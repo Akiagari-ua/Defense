@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh20vfg2g4o6q"]
+
+[ext_resource type="PackedScene" uid="uid://3n3j00ce6ck6" path="res://player.tscn" id="1_wjfxn"]
+[ext_resource type="PackedScene" uid="uid://cpcythfvy6omn" path="res://camera.tscn" id="2_3ot0g"]
+[ext_resource type="PackedScene" uid="uid://b4jq00kkjli3c" path="res://Tree.tscn" id="3_vdbo1"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wjfxn")]
+position = Vector2(1, 0)
+
+[node name="Node2D" parent="." instance=ExtResource("2_3ot0g")]
+position = Vector2(12, 4)
+
+[node name="Sprite2D" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(290, 148)
+
+[node name="Sprite2D2" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(524, -119)
+
+[node name="Sprite2D3" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-203, 203)
+
+[node name="Sprite2D4" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-670, 542)
+
+[node name="Sprite2D5" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-310, -739)
+
+[node name="Sprite2D6" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(787, -954)
+
+[node name="Sprite2D7" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(841, -554)
+
+[node name="Sprite2D8" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(1375, 566)
+
+[node name="Sprite2D9" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(867, 260)
+
+[node name="Sprite2D10" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-895, 189)
+
+[node name="Sprite2D11" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-986, -134)
+
+[node name="Sprite2D12" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-1299, 250)
+
+[node name="Sprite2D13" parent="." instance=ExtResource("3_vdbo1")]
+position = Vector2(-912, -470)
