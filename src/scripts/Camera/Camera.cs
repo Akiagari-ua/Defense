@@ -8,7 +8,7 @@ public partial class Camera : Camera2D
 	private float deadZoneSize = 100f;
 
 	// Скорость сглаживания камеры (чем больше, тем быстрее)
-	private float smoothingFactor = 0.5f;
+	private float smoothingFactor = 0.7f;
 
 	private CharacterBody2D player;
 	// Called when the node enters the scene tree for the first time.

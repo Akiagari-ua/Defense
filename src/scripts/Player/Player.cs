@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Player : CharacterBody2D
@@ -8,31 +9,43 @@ public partial class Player : CharacterBody2D
 	private float desiredHeightInUnits = 2f;
 	private float pixelsPerUnit = 64f;
 
+	string watchDirection = "down";
+	string playerState = "idle";
+
+	AnimatedSprite2D sprite = null;
+
+
 	public override void _Ready()
 	{
-		// Получаем ноду AnimatedSprite2D
-		var animatedSprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
+		sprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
 
-		// Получаем SpriteSheet, который хранит анимации
-		var spriteSheet = animatedSprite.SpriteFrames;
-
-		// Получаем текстуру первого кадра текущей анимации
-		Texture2D firstFrameTexture = spriteSheet.GetFrameTexture(animatedSprite.Animation, 0);
-
-		// Получаем размер первого кадра
-		Vector2 frameSize = firstFrameTexture.GetSize();
-
-		// Рассчитываем масштаб, чтобы высота игрока соответствовала 2 игровым единицам
-		float scaleFactor = desiredHeightInUnits / (frameSize.Y / pixelsPerUnit);
-
-		// Устанавливаем масштаб для увеличения игрока
-		Scale = new Vector2(scaleFactor, scaleFactor);
+		sprite?.Play("idle_down");
 	}
 
 	public override void _Process(double delta)
 	{
 
 		Walking();
+		if (Velocity.X == 0 && Velocity.Y == 0)
+		{
+			if (watchDirection == "down")
+			{
+				sprite?.Play("idle_down");
+			}
+			if (watchDirection == "up")
+			{
+				sprite?.Play("idle_up");
+			}
+			if (watchDirection == "left")
+			{
+				sprite?.Play("idle_left");
+			}
+			if (watchDirection == "right")
+			{
+				sprite?.Play("idle_right");
+			}
+		}
+
 
 		MoveAndSlide();
 
@@ -45,24 +58,40 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionPressed("ui_up"))    // W
 		{
 			direction.Y -= 1;
+			watchDirection = "up";
+			playerState = "run";
+			sprite?.Play("run_up");
 		}
 		if (Input.IsActionPressed("ui_down"))  // S
 		{
 			direction.Y += 1;
+			watchDirection = "down";
+			playerState = "run";
+			sprite?.Play("run_down");
+
+
 		}
 		if (Input.IsActionPressed("ui_left"))  // A
 		{
 			direction.X -= 1;
+			watchDirection = "left";
+			playerState = "run";
+			sprite?.Play("run_left");
+
 		}
 		if (Input.IsActionPressed("ui_right")) // D
 		{
 			direction.X += 1;
+			watchDirection = "right";
+			playerState = "run";
+			sprite?.Play("run_right");
 		}
 
 		if (direction != Vector2.Zero)
 		{
 			direction = direction.Normalized();
 		}
+
 
 		Velocity = direction * speed;
 
